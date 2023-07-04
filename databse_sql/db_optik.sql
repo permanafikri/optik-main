@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 26, 2021 at 09:32 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Host: localhost:8889
+-- Generation Time: Jul 04, 2023 at 04:29 PM
+-- Server version: 5.7.39
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_barang`
+-- Database: `db_optik`
 --
 
 -- --------------------------------------------------------
@@ -40,8 +40,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `stok`, `satuan_id`, `jenis_id`) VALUES
-('B000001', 'AJT TURBINE VENTILATOR - AJT24', 1, 1, 9),
-('B000002', 'AJT UK 12', 1100, 1, 9);
+('B000001', 'Kacamata Gabbana', 10, 5, 12),
+('B000002', 'Kacamata Burbery', 0, 5, 12);
 
 -- --------------------------------------------------------
 
@@ -56,14 +56,6 @@ CREATE TABLE `barang_keluar` (
   `jumlah_keluar` int(11) NOT NULL,
   `tanggal_keluar` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `barang_keluar`
---
-
-INSERT INTO `barang_keluar` (`id_barang_keluar`, `user_id`, `barang_id`, `jumlah_keluar`, `tanggal_keluar`) VALUES
-('T-BK-21010300001', 16, 'B000001', 99, '2021-01-03'),
-('T-BK-21010300002', 16, 'B000002', 122, '2021-01-03');
 
 --
 -- Triggers `barang_keluar`
@@ -93,8 +85,7 @@ CREATE TABLE `barang_masuk` (
 --
 
 INSERT INTO `barang_masuk` (`id_barang_masuk`, `supplier_id`, `user_id`, `barang_id`, `jumlah_masuk`, `tanggal_masuk`) VALUES
-('T-BM-21010300001', 5, 16, 'B000001', 100, '2021-01-03'),
-('T-BM-21010300002', 5, 16, 'B000002', 1222, '2021-01-03');
+('T-BM-23070400001', 8, 18, 'B000001', 10, '2023-07-04');
 
 --
 -- Triggers `barang_masuk`
@@ -120,7 +111,8 @@ CREATE TABLE `jenis` (
 --
 
 INSERT INTO `jenis` (`id_jenis`, `nama_jenis`) VALUES
-(9, 'Turbine');
+(12, 'Frame'),
+(13, 'Lensa');
 
 -- --------------------------------------------------------
 
@@ -138,10 +130,7 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
-(1, 'Unit'),
-(2, 'Pack'),
-(5, 'Pcs'),
-(6, 'Stel');
+(5, 'Pcs');
 
 -- --------------------------------------------------------
 
@@ -161,8 +150,7 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `no_telp`, `alamat`) VALUES
-(5, 'Toko Besi', '08128912911', 'Jalan Sukasar No.09 Bandung'),
-(6, 'Toko Ball Bearing', '0787121212', 'Jalan Sukamenak');
+(8, 'Optik Melawai', '08124712481', 'Bandung');
 
 -- --------------------------------------------------------
 
@@ -188,10 +176,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `email`, `no_telp`, `role`, `password`, `created_at`, `foto`, `is_active`) VALUES
-(14, 'Admin Gudang 1', 'gudang', 'admingudang1@gmail.com', '087741136523', 'gudang', '$2y$10$iKD34kzk5fK.0mh8Xz01heRIL/pVQ2nlB8s2gy1.gnGHo.HlDVknW', 1604904025, '3f692d655e41895ecee6504a26145854.png', 1),
-(15, 'Admin Gudang 2', 'gudang2', 'admingudang2@gmail.com', '087741136520', 'gudang', '$2y$10$YBpHs5w70qrIH./LcrOXvOKxi2OAWwnavO7Z0c.CgH/qv17GLVY32', 1604904059, 'user.png', 0),
-(16, 'Admin', 'hamdan', 'sehahh26@gmail.com', '087741136521', 'admin', '$2y$10$P1Cv3I8Usxti/.HrHt/w3ekW3yqypojIcbKkZKenV6nLvsOUAlJAi', 1604904101, 'bce8b65a759747b8296a5c6ddfd19f74.png', 1),
-(17, 'Hamdan Junaedi', 'bandung', 'sehahhhamdan@gmail.com', '089656351051', 'gudang', '$2y$10$Y829V0T1o94NLSz1UnKrVOG9kVMNK7L.n/J/bJ.IOsvbOAGEWi93m', 1624523773, 'user.png', 0);
+(18, 'admin1', 'admin', 'admin@mail.com', '08123912489', 'admin', '$2y$10$1t6St0MzGtcuU3AnSDO5Aeh9gUOFHJSr6yyW2EnA/T6vLChlfZDSy', 1688485580, 'user.png', 1);
 
 --
 -- Indexes for dumped tables
@@ -254,7 +239,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `jenis`
 --
 ALTER TABLE `jenis`
-  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -266,13 +251,13 @@ ALTER TABLE `satuan`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables

@@ -18,10 +18,12 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!--Favicon-->
+    <link rel="icon" href="<?= base_url(); ?>assets/img/logo-optik.png" type="image/x-icon">
+
     <style>
         .bg-login-image {
-            /* background-image: url("<?= base_url('assets/img/finance_0bdk.svg'); ?>"); */
-            background-image: url("<?= base_url('assets/img/bpbd.png'); ?>");
+            background-image: url("<?= base_url('assets/img/logo-optik1.png'); ?>");
             background-repeat: no-repeat;
             background-size: 80%;
         }
@@ -29,7 +31,7 @@
 </head>
 
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-dark">
 
     <div class="container">
 

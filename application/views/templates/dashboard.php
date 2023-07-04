@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><?= $title; ?> | BPBD Kota Cimahi</title>
+    <title><?= $title; ?> | OPTIKAL PRIBADI</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +24,9 @@
     <link href="<?= base_url(); ?>assets/vendor/datatables/buttons/css/buttons.bootstrap4.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/datatables/responsive/css/responsive.bootstrap4.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/vendor/gijgo/css/gijgo.min.css" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="icon" href="<?= base_url(); ?>assets/img/logo-optik.png" type="image/x-icon">
 
     <style>
         #accordionSidebar,
@@ -45,7 +48,7 @@
             <a class="sidebar-brand d-flex text-white align-items-center bg-white justify-content-center" href="">
 
                 <div class="sidebar-brand-img">
-                    <img class="" style="width: 50px;" src="assets/img/bpbd.png">
+                    <img class="" style="width: 50px;" src="assets/img/logo-optik1.png">
                     <!-- <i class="fab fa-angellist"></i> -->
                 </div>
                 <!-- <div class="sidebar-brand-text mx-3">INALUM</div> -->
@@ -68,12 +71,12 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('supplier'); ?>">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Supplier</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -84,7 +87,7 @@
                 <div id="collapseMaster" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-light py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Master Barang:</h6>
-                        <a class="collapse-item" href="<?= base_url('satuan'); ?>">Satuan Barang</a>
+                        <!-- <a class="collapse-item" href="<?= base_url('satuan'); ?>">Satuan Barang</a> -->
                         <a class="collapse-item" href="<?= base_url('jenis'); ?>">Jenis Barang</a>
                         <a class="collapse-item" href="<?= base_url('barang'); ?>">Data Barang</a>
                     </div>
@@ -108,12 +111,12 @@
             </li>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('barangkeluar'); ?>">
                     <i class="fas fa-fw fa-upload"></i>
                     <span>Barang Keluar</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider"> -->
@@ -166,7 +169,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-primary topbar mb-4 static-top shadow-sm">
+                <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow-sm">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link bg-transparent d-md-none rounded-circle mr-3">
@@ -229,7 +232,7 @@
             <footer class="sticky-footer bg-light">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; CV ADAM JAYA TEKNIK</span>
+                        <span>Copyright &copy; CV OPTIKAL PRIBADI</span>
                     </div>
                 </div>
             </footer>
