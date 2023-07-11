@@ -78,6 +78,14 @@
                 </a>
             </li>
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('pembelian'); ?>">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                    <span>Pembelian</span>
+                </a>
+            </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseMaster" aria-expanded="true" aria-controls="collapseMaster">
