@@ -49,7 +49,7 @@ class Pembelian extends CI_Controller
             $insert = $this->admin->insert('barang_masuk', $input);
 
             if ($insert) {
-                set_pesan('data berhasil disimpan.');
+                set_pesan('data berhasil disimpan. Tunggu Admin untuk verifikasi');
                 redirect('pembelian');
             } else {
                 set_pesan('Opps ada kesalahan!');
@@ -71,10 +71,11 @@ class Pembelian extends CI_Controller
             $this->template->load('templates/dashboard', 'pembelian/edit', $data);
         } else {
             $input = $this->input->post(null, true);
-            $insert = $this->admin->update('barang_masuk',$id, $input);
-
+            $insert = $this->admin->update('barang_masuk','id_barang_masuk',$id, $input);
+            
             if ($insert) {
-                set_pesan('data berhasil diedit.');
+                set_pesan('data berhasil diVerifikasi.');
+                // $this->toggle2($id);
                 redirect('pembelian');
             } else {
                 set_pesan('Opps ada kesalahan!');
@@ -94,14 +95,30 @@ class Pembelian extends CI_Controller
         redirect('pembelian');
     }
 
-    public function toggle($getId)
+    public function toggle2($getId)
     {
         $id = encode_php_tags($getId);
         $status = $this->admin->get('barang_masuk', ['id_barang_masuk' => $id])['is_verifikasi'];
         $toggle = $status ? 0 : 1; //Jika Pembelian terfivikasi maka tidak verifikasi, begitu pula sebaliknya
         $pesan = $toggle ? 'Pembelian Terverifikasi' : 'Pembelian Terverifikasi';
 
-        if ($this->admin->update('barang_masuk', 'id_barang_masuk', $id, ['is_verifikasi' => $toggle])) {
+        if ($this->admin->update('barang_masuk', 'id_barang_masuk', $id,['is_verifikasi' => $toggle])) {
+            set_pesan($pesan);
+        }
+        redirect('pembelian');
+    }
+
+    public function toggle($getId)
+    {
+        $id = encode_php_tags($getId);
+        $status = $this->admin->get('barang_masuk', ['id_barang_masuk' => $id])['is_verifikasi'];
+        $total = $this->admin->get('barang_masuk', ['id_barang_masuk' => $id])['jumlah_masuk'];
+        $toggle = $status ? 0 : 1; //Jika Pembelian terfivikasi maka tidak verifikasi, begitu pula sebaliknya
+        $pesan = $toggle ? 'Pembelian Terverifikasi' : 'Pembelian Terverifikasi';
+
+        $input = ['is_verifikasi'=>$toggle,'jumlah_keseluruhan'=>$total ];
+
+        if ($this->admin->update('barang_masuk', 'id_barang_masuk', $id, $input)) {
             set_pesan($pesan);
         }
         redirect('pembelian');

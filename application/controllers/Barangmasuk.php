@@ -49,7 +49,7 @@ class Barangmasuk extends CI_Controller
             $insert = $this->admin->insert('barang_masuk', $input);
 
             if ($insert) {
-                set_pesan('data berhasil disimpan.');
+                set_pesan('data berhasil disimpan. Tunggu Admin untuk verifikasi');
                 redirect('barangmasuk');
             } else {
                 set_pesan('Opps ada kesalahan!');

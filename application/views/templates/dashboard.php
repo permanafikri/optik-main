@@ -112,6 +112,14 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
+                <a class="nav-link pb-0" href="<?= base_url('barangreturn'); ?>">
+                    <i class="fa fa-recycle"></i>
+                    <span>Barang Return</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
                 <a class="nav-link pb-0" href="<?= base_url('barangmasuk'); ?>">
                     <i class="fas fa-fw fa-download"></i>
                     <span>Barang Masuk</span>
@@ -361,6 +369,9 @@
         let satuan = $('#satuan');
         let stok = $('#stok');
         let total = $('#total_stok');
+        let tolak = $('#jumlah_ditolak');
+        let masuk = $('#jumlah_masuk');
+        let totalDiterima = $('#jumlah_keseluruhan');
         let jumlah = hal == 'barangmasuk' ? $('#jumlah_masuk') : $('#jumlah_keluar');
 
         $(document).on('change', '#barang_id', function() {
@@ -381,6 +392,11 @@
         $(document).on('keyup', '#jumlah_keluar', function() {
             let totalStok = parseInt(stok.val()) - parseInt(this.value);
             total.val(Number(totalStok));
+        });
+
+        $(document).on('keyup', '#jumlah_ditolak', function() {
+            let totalStok = parseInt(masuk.val()) - parseInt(this.value);
+            totalDiterima.val(Number(totalStok));
         });
     </script>
 

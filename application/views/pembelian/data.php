@@ -46,7 +46,7 @@
                             <td><?= $bm['tanggal_masuk']; ?></td>
                             <td><?= $bm['nama_supplier']; ?></td>
                             <td><?= $bm['nama_barang']; ?></td>
-                            <td><?= $bm['jumlah_masuk'] . ' ' . $bm['nama_satuan']; ?></td>
+                            <td><?= $bm['jumlah_keseluruhan'] . ' ' . $bm['nama_satuan']; ?></td>
                             <td><?= $bm['nama']; ?></td>
                             <td>
                                 <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('pembelian/delete/') . $bm['id_barang_masuk'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
@@ -89,6 +89,8 @@
                     <th>Supplier</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Masuk</th>
+                    <th>Jumlah Ditolak</th>
+                    <th>Total</th>
                     <th>User</th>
                     <th>Verifikasi</th>
                 </tr>
@@ -98,7 +100,8 @@
                 $no = 1;
                 if ($barangmasuk) :
                     foreach ($barangmasuk as $bm) :
-                        ?>
+                        if($bm['is_verifikasi'] != 0) :
+                        else: ?>  
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $bm['id_barang_masuk']; ?></td>
@@ -106,11 +109,15 @@
                             <td><?= $bm['nama_supplier']; ?></td>
                             <td><?= $bm['nama_barang']; ?></td>
                             <td><?= $bm['jumlah_masuk'] . ' ' . $bm['nama_satuan']; ?></td>
+                            <td><?= $bm['jumlah_ditolak'] . ' ' . $bm['nama_satuan']; ?></td>
+                            <td><?= $bm['jumlah_keseluruhan'] . ' ' . $bm['nama_satuan']; ?></td>
                             <td><?= $bm['nama']; ?></td>
                             <td>
                             <a href="<?= base_url('pembelian/toggle/') . $bm['id_barang_masuk']?>" class="btn btn-circle btn-sm <?= $bm['is_verifikasi'] == 0 ? 'btn-secondary' : 'btn-success' ?>" title="<?= $bm['is_verifikasi'] ? ' Tolak Pembelian' : 'Verifikasi Pembelian' ?>"><i class="fa fa-fw fa-power-off"></i></a>
+                            <a href="<?= base_url('pembelian/edit/') . $bm['id_barang_masuk'] ?>" class="btn btn-circle btn-sm btn-warning"><i class="fa fa-fw fa-edit"></i></a>
                             </td>
                         </tr>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <tr>
