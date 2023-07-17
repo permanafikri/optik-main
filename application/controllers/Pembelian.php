@@ -58,6 +58,31 @@ class Pembelian extends CI_Controller
         }
     }
 
+    public function edit($getId)
+    {
+        $id = encode_php_tags($getId);
+        $this->_validasi();
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Pembelian";
+            $data['supplier'] = $this->admin->get('supplier');
+            $data['barang'] = $this->admin->get('barang');
+            $data['barang_masuk'] = $this->admin->get('barang_masuk',['id_barang_masuk' => $id]);
+
+            $this->template->load('templates/dashboard', 'pembelian/edit', $data);
+        } else {
+            $input = $this->input->post(null, true);
+            $insert = $this->admin->update('barang_masuk',$id, $input);
+
+            if ($insert) {
+                set_pesan('data berhasil diedit.');
+                redirect('pembelian');
+            } else {
+                set_pesan('Opps ada kesalahan!');
+                redirect('pembelian/edit'.$id);
+            }
+        }
+    }
+
     public function delete($getId)
     {
         $id = encode_php_tags($getId);
@@ -65,6 +90,19 @@ class Pembelian extends CI_Controller
             set_pesan('data berhasil dihapus.');
         } else {
             set_pesan('data gagal dihapus.', false);
+        }
+        redirect('pembelian');
+    }
+
+    public function toggle($getId)
+    {
+        $id = encode_php_tags($getId);
+        $status = $this->admin->get('barang_masuk', ['id_barang_masuk' => $id])['is_verifikasi'];
+        $toggle = $status ? 0 : 1; //Jika Pembelian terfivikasi maka tidak verifikasi, begitu pula sebaliknya
+        $pesan = $toggle ? 'Pembelian Terverifikasi' : 'Pembelian Terverifikasi';
+
+        if ($this->admin->update('barang_masuk', 'id_barang_masuk', $id, ['is_verifikasi' => $toggle])) {
+            set_pesan($pesan);
         }
         redirect('pembelian');
     }
