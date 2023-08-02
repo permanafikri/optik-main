@@ -34,6 +34,20 @@
             z-index: 1;
         }
     </style>
+
+    <script>
+        // Fungsi untuk menyembunyikan pesan setelah beberapa waktu (dalam milidetik)
+        function hideMessage() {
+            var messageElement = document.querySelector('.alert');
+            if (messageElement) {
+                messageElement.style.display = 'none';
+            }
+        }
+
+        // Menjalankan fungsi hideMessage() setelah 5 detik (5000 milidetik)
+        setTimeout(hideMessage, 2000);
+    </script>
+
 </head>
 
 <body id="page-top">
