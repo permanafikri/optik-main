@@ -5,9 +5,12 @@ class Admin_model extends CI_Model
 {
     public function get($table, $data = null, $where = null)
     {
-        if ($data != null) {
+        if ($data != null)
+        {
             return $this->db->get_where($table, $data)->row_array();
-        } else {
+        }
+        else
+        {
             return $this->db->get_where($table, $where)->result_array();
         }
     }
@@ -55,15 +58,62 @@ class Admin_model extends CI_Model
         $this->db->join('supplier sp', 'bm.supplier_id = sp.id_supplier');
         $this->db->join('barang b', 'bm.barang_id = b.id_barang');
         $this->db->join('satuan s', 'b.satuan_id = s.id_satuan');
-        if ($limit != null) {
+        if ($limit != null)
+        {
             $this->db->limit($limit);
         }
 
-        if ($id_barang != null) {
+        if ($id_barang != null)
+        {
             $this->db->where('id_barang', $id_barang);
         }
 
-        if ($range != null) {
+        if ($range != null)
+        {
+            $this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
+            $this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
+        }
+
+        $this->db->order_by('id_barang_masuk', 'DESC');
+        return $this->db->get('barang_masuk bm')->result_array();
+    }
+
+    public function insert_barang_keluar($data)
+    {
+        // Simpan data barang keluar ke tabel database "barang_keluar"
+        return $this->db->insert_batch('barang_keluar', $data);
+    }
+
+    public function ubahKode($idKode)
+    {
+        $kode = 'T-BK-' . date('ymd');
+        $kode_terakhir = $idKode;
+        $kode_tambah = substr($kode_terakhir, -5, 5);
+        $kode_tambah++;
+        $number = str_pad($kode_tambah, 5, '0', STR_PAD_LEFT);
+        $hasil = $kode . $number;
+        return $hasil;
+    }
+
+    public function getReturn($limit = null, $id_barang = null, $range = null)
+    {
+        $this->db->select('*');
+        $this->db->join('user u', 'bm.user_id = u.id_user');
+        $this->db->join('supplier sp', 'bm.supplier_id = sp.id_supplier');
+        $this->db->join('barang b', 'bm.barang_id = b.id_barang');
+        $this->db->join('satuan s', 'b.satuan_id = s.id_satuan');
+        if ($limit != null)
+        {
+            $this->db->limit($limit);
+        }
+
+        if ($id_barang != null)
+        {
+            $this->db->where('id_barang', $id_barang);
+        }
+
+        if ($range != null)
+        {
             $this->db->where('tanggal_masuk' . ' >=', $range['mulai']);
             $this->db->where('tanggal_masuk' . ' <=', $range['akhir']);
         }
@@ -78,13 +128,16 @@ class Admin_model extends CI_Model
         $this->db->join('user u', 'bk.user_id = u.id_user');
         $this->db->join('barang b', 'bk.barang_id = b.id_barang');
         $this->db->join('satuan s', 'b.satuan_id = s.id_satuan');
-        if ($limit != null) {
+        if ($limit != null)
+        {
             $this->db->limit($limit);
         }
-        if ($id_barang != null) {
+        if ($id_barang != null)
+        {
             $this->db->where('id_barang', $id_barang);
         }
-        if ($range != null) {
+        if ($range != null)
+        {
             $this->db->where('tanggal_keluar' . ' >=', $range['mulai']);
             $this->db->where('tanggal_keluar' . ' <=', $range['akhir']);
         }
@@ -95,7 +148,8 @@ class Admin_model extends CI_Model
     public function getMax($table, $field, $kode = null)
     {
         $this->db->select_max($field);
-        if ($kode != null) {
+        if ($kode != null)
+        {
             $this->db->like($field, $kode, 'after');
         }
         return $this->db->get($table)->row_array()[$field];

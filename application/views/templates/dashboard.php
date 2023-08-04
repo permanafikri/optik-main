@@ -149,19 +149,19 @@
             </li>
 
             <!-- Divider -->
-            <!-- <hr class="sidebar-divider"> -->
+            <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <!-- <div class="sidebar-heading">
+            <div class="sidebar-heading">
                 Report
-            </div> -->
+            </div>
 
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('laporan'); ?>">
                     <i class="fas fa-fw fa-print"></i>
                     <span>Cetak Laporan</span>
                 </a>
-            </li> -->
+            </li>
 
             <?php if (is_admin()) : ?>
                 <!-- Divider -->
@@ -379,7 +379,6 @@
     </script>
     <script type="text/javascript">
         let hal = '<?= $this->uri->segment(1); ?>';
-
         let satuan = $('#satuan');
         let stok = $('#stok');
         let total = $('#total_stok');
