@@ -26,7 +26,7 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="username">Username</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('username'); ?>" type="text" id="username" name="username" class="form-control" placeholder="Username">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username">
                         <?= form_error('username', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
@@ -48,38 +48,40 @@
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="nama">Nama</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('nama'); ?>" type="text" id="nama" name="nama" class="form-control" placeholder="Nama">
+                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama">
                         <?= form_error('nama', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="email">Email</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('email'); ?>" type="text" id="email" name="email" class="form-control" placeholder="Email">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="Email">
                         <?= form_error('email', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="no_telp">Nomor Telepon</label>
                     <div class="col-md-6">
-                        <input value="<?= set_value('no_telp'); ?>" type="text" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
+                        <input type="text" id="no_telp" name="no_telp" class="form-control" placeholder="Nomor Telepon">
                         <?= form_error('no_telp', '<span class="text-danger small">', '</span>'); ?>
                     </div>
                 </div>
                 <div class="row form-group">
                     <label class="col-md-4 text-md-right" for="role">Role</label>
-                    <div class="col-md-6">
-                        <div class="custom-control custom-radio">
-                            <input <?= set_radio('role', 'admin'); ?> value="admin" type="radio" id="admin" name="role" class="custom-control-input">
-                            <label class="custom-control-label" for="admin">Admin</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <select name="role" id="role" class="custom-select">
+                                <option value="" selected disabled>Pilih Role</option>
+                                <option value="admin" >Admin</option>
+                                <option value="gudang" >Gudang</option>
+                                <option value="owner" >Owner</option>
+
+                            </select>
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input <?= set_radio('role', 'gudang'); ?> value="gudang" type="radio" id="gudang" name="role" class="custom-control-input">
-                            <label class="custom-control-label" for="gudang">Gudang</label>
-                        </div>
-                        <?= form_error('role', '<span class="text-danger small">', '</span>'); ?>
+
                     </div>
                 </div>
+                <?= form_error('role', '<span class="text-danger small">', '</span>'); ?>
                 <br>
                 <div class="row form-group justify-content-end">
                     <div class="col-md-8">

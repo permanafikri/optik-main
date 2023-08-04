@@ -3,7 +3,8 @@
 function cek_login()
 {
     $ci = get_instance();
-    if (!$ci->session->has_userdata('login_session')) {
+    if (!$ci->session->has_userdata('login_session'))
+    {
         set_pesan('silahkan login.');
         redirect('auth');
     }
@@ -16,7 +17,23 @@ function is_admin()
 
     $status = true;
 
-    if ($role != 'admin') {
+    if ($role != 'admin')
+    {
+        $status = false;
+    }
+
+    return $status;
+}
+
+function is_owner()
+{
+    $ci = get_instance();
+    $role = $ci->session->userdata('login_session')['role'];
+
+    $status = true;
+
+    if ($role != 'owner')
+    {
         $status = false;
     }
 
@@ -26,9 +43,12 @@ function is_admin()
 function set_pesan($pesan, $tipe = true)
 {
     $ci = get_instance();
-    if ($tipe) {
+    if ($tipe)
+    {
         $ci->session->set_flashdata('pesan', "<div class='alert alert-success'><strong>SUCCESS!</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-    } else {
+    }
+    else
+    {
         $ci->session->set_flashdata('pesan', "<div class='alert alert-danger'><strong>ERROR!</strong> {$pesan} <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
     }
 }
