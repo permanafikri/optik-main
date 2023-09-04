@@ -27,6 +27,15 @@ class Pembelian extends CI_Controller
         $this->form_validation->set_rules('barang[0][jumlah_masuk]', 'Jumlah Masuk', 'required|trim|numeric|greater_than[0]');
     }
 
+    private function _validasi2()
+    {
+        $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required|trim');
+        $this->form_validation->set_rules('supplier_id', 'Supplier', 'required');
+        $this->form_validation->set_rules('barang_id', 'Barang', 'required');
+        $this->form_validation->set_rules('jumlah_masuk', 'Jumlah Masuk', 'required|trim|numeric|greater_than[0]');
+        $this->form_validation->set_rules('jumlah_keseluruhan', 'Jumlah Keseluruhan', 'required|trim|numeric|greater_than[0]');
+    }
+
     public function add()
     {
         $this->_validasi();
@@ -80,7 +89,7 @@ class Pembelian extends CI_Controller
     public function edit($getId)
     {
         $id = encode_php_tags($getId);
-        $this->_validasi();
+        $this->_validasi2();
         if ($this->form_validation->run() == false)
         {
             $data['title'] = "Pembelian";
@@ -93,6 +102,7 @@ class Pembelian extends CI_Controller
         else
         {
             $input = $this->input->post(null, true);
+            echo $input;
             $insert = $this->admin->update('barang_masuk', 'id_barang_masuk', $id, $input);
 
             if ($insert)
