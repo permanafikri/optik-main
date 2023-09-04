@@ -68,3 +68,14 @@ function output_json($data)
     $data = json_encode($data);
     $ci->output->set_content_type('application/json')->set_output($data);
 }
+
+function ubahKodeKeluar($idKode)
+{
+    $kode = 'T-BK-' . date('ymd');
+    $kode_terakhir = $idKode;
+    $kode_tambah = substr($kode_terakhir, -5, 5);
+    $kode_tambah++;
+    $number = str_pad($kode_tambah, 5, '0', STR_PAD_LEFT);
+    $hasil = $kode . $number;
+    return $hasil;
+}

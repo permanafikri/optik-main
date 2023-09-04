@@ -322,7 +322,6 @@
     <script src="<?= base_url(); ?>assets/vendor/datatables/buttons/js/buttons.colVis.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
-
     <script src="<?= base_url(); ?>assets/vendor/gijgo/js/gijgo.min.js"></script>
 
     <script type="text/javascript">
@@ -581,6 +580,10 @@
             });
         </script>
     <?php endif; ?>
+
+    
+
+    
 </body>
 
 </html>

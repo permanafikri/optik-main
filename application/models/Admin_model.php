@@ -80,11 +80,15 @@ class Admin_model extends CI_Model
 
     public function insert_barang_keluar($data)
     {
-        // Simpan data barang keluar ke tabel database "barang_keluar"
         return $this->db->insert_batch('barang_keluar', $data);
     }
 
-    public function ubahKode($idKode)
+    public function insert_barang_masuk($data)
+    {
+        return $this->db->insert_batch('barang_masuk', $data);
+    }
+
+    public function ubahKodeKeluar($idKode)
     {
         $kode = 'T-BK-' . date('ymd');
         $kode_terakhir = $idKode;

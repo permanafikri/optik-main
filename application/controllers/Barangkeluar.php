@@ -65,7 +65,6 @@ class Barangkeluar extends CI_Controller
         {
             $inputs = $this->input->post('barang');
             $data = array();
-            $today = date('ymd');
 
             foreach ($inputs as $barang)
             {
